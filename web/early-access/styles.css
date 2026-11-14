@@ -388,9 +388,24 @@ h1 {
 
 .stage {
   position: relative;
-  display: grid;
-  place-items: end center;
-  min-height: clamp(420px, 62vh, 640px);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* The count and what he says have a row of their own above his head, so that at no width
+   and with no line of his, however long, do they cover his face */
+.callouts {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 12px;
+  width: 100%;
+  min-height: 8rem;
+  margin-bottom: 6px;
 }
 
 .halo {
@@ -425,23 +440,21 @@ h1 {
 
 .vaathi {
   position: relative;
-  height: clamp(400px, 60vh, 620px);
+  height: clamp(360px, 52vh, 540px);
   width: auto;
   filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
 }
 
 .chip,
 .says {
-  position: absolute;
-  z-index: 2;
   box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.7);
   animation: float 5s ease-in-out infinite;
 }
 
 /* The app's own count bubble, counting up and then turning red */
 .chip {
-  top: 9%;
-  left: 2%;
+  align-self: flex-start;
+  flex: none;
   display: flex;
   align-items: center;
   gap: 8px;
@@ -465,9 +478,7 @@ h1 {
 }
 
 .says {
-  top: 13%;
-  right: -2%;
-  max-width: 15rem;
+  max-width: min(15rem, 56%);
   padding: 14px 18px;
   border-radius: 20px 20px 20px 6px;
   background: var(--ink-3);
@@ -1001,10 +1012,6 @@ h1 {
     grid-template-columns: 1fr;
   }
 
-  .stage {
-    min-height: 400px;
-  }
-
   .vaathi {
     height: 400px;
   }
@@ -1068,24 +1075,20 @@ h1 {
     text-align: center;
   }
 
-  /* The bubble and the count sit above his head, where there is room for them */
-  .stage {
-    min-height: 510px;
-  }
-
   .vaathi {
     height: 370px;
   }
 
-  .chip {
-    top: 0;
-    left: 0;
+  /* On a narrow screen the two take a line each, the count above what he says */
+  .callouts {
+    flex-direction: column;
+    align-items: flex-end;
+    justify-content: flex-end;
+    min-height: 10.5rem;
   }
 
   .says {
-    top: 52px;
-    right: 0;
-    max-width: 12rem;
+    max-width: 13rem;
     font-size: 0.9rem;
   }
 
