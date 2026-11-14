@@ -10,6 +10,7 @@ no build step: the folder is the website.
 | `script.js` | The particles, the moving parts and the sign-up form |
 | `privacy.html` | The privacy note the page links to |
 | `assets/` | The character's clips and the phone captures |
+| `../signup-sheet/Code.gs` | The script that writes sign-ups into a Google Sheet; not part of the published page |
 
 ## Preview it
 
@@ -22,13 +23,34 @@ looks like without sending anything.
 
 ## Before it goes online
 
-1. **Connect the form.** Set `FORM_ENDPOINT` at the top of `script.js` to the address of a form
-   service that accepts a JSON POST of `{"email": "..."}`. Until then the form sends nothing
-   and tells the visitor so.
-2. **Add a contact address.** Replace `CONTACT_EMAIL` in `privacy.html`, in both places.
-3. **Check the two open questions** in the project README under "Releasing on Google Play":
+The form is connected to its Google Sheet and `privacy.html` carries a contact address. One
+thing is left:
+
+1. **Check the two open questions** in the project README under "Releasing on Google Play":
    the character is styled on a real actor, and the clips were made on Kling's free plan. A
    public page raises both as much as the app does.
+
+## Where sign-ups go
+
+Sign-ups are kept in a Google Sheet, written by a small Google Apps Script that belongs to the
+sheet: `web/signup-sheet/Code.gs`. It sits outside this folder so that it is not published
+with the page.
+
+1. Create a Google Sheet, in the Google account that should own the list.
+2. In the sheet, open **Extensions > Apps Script**, delete what is in the editor and paste in
+   `Code.gs`. Save.
+3. Choose **Deploy > New deployment**, pick the type **Web app**, and set **Execute as** to
+   **Me** and **Who has access** to **Anyone**. Deploy, and approve the access Google asks
+   for: the script needs to write to this one spreadsheet.
+4. Copy the **Web app URL**, which ends in `/exec`, into `FORM_ENDPOINT` at the top of
+   `script.js`.
+
+The first sign-up makes a tab called "Sign-ups" with two columns, when and the address. An
+address that signs up twice is kept once. After changing `Code.gs`, deploy again with
+**Deploy > Manage deployments > Edit > New version**, which keeps the same address.
+
+The web app's address is public, like any form's: anyone who reads the page's source can post
+to it. The script refuses anything that isn't an email address and stops at 20,000 rows.
 
 ## Put it online
 

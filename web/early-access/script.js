@@ -1,8 +1,10 @@
 "use strict";
 
-// Where sign-ups are sent: the address of a form service that accepts a JSON POST of
-// {"email": "..."}. While it is empty the form sends nothing and says so.
-const FORM_ENDPOINT = "";
+// Where sign-ups are sent: the web app address of the Google Apps Script that fills the
+// sign-up sheet (web/signup-sheet/Code.gs), which ends in /exec. While it is empty the form
+// sends nothing and says so.
+const FORM_ENDPOINT =
+  "https://script.google.com/macros/s/AKfycbx6a-a_vLUBbrdO4HY9LcFhivYfF5bjL6cxDwAUkoDM2V4gSeS3IJPdIEC-8E6nhXc1sg/exec";
 
 // Adding ?demo to the page's address makes the form behave as if a sign-up had gone through,
 // without sending anything, so the success message and confetti can be seen before a form
@@ -247,12 +249,17 @@ const EMAIL = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
 
 async function send(email) {
   if (DEMO) return true;
+  // The JSON goes as plain text on purpose. A JSON content type makes the browser ask the
+  // script's permission before posting, and an Apps Script web app can't answer that question
   const response = await fetch(FORM_ENDPOINT, {
     method: "POST",
-    headers: { "Content-Type": "application/json", Accept: "application/json" },
+    headers: { "Content-Type": "text/plain;charset=utf-8" },
     body: JSON.stringify({ email }),
   });
-  return response.ok;
+  if (!response.ok) return false;
+  // A script that fails still answers 200, with an error page: only its own "ok" counts
+  const answer = await response.json();
+  return answer.ok === true;
 }
 
 for (const form of document.querySelectorAll(".signup")) {
@@ -278,7 +285,7 @@ for (const form of document.querySelectorAll(".signup")) {
     }
     button.disabled = true;
     try {
-      if (!(await send(email))) throw new Error("The form service refused the sign-up");
+      if (!(await send(email))) throw new Error("The sign-up sheet refused the address");
       say("You're on the list, Nanba! Vaathi will come find you.", "ok");
       input.value = "";
       const box = button.getBoundingClientRect();
