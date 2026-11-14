@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The character's head, cut out by art/make_clips.py. The inset keeps it inside the middle
+     two thirds of the icon, which is all a launcher is sure to show. -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/ic_launcher_head"
+    android:inset="12%" />

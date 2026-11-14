@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- The pale blue the theme puts behind his face, from the navy of his shirt -->
+    <color name="ic_launcher_background">#DCE1FF</color>
+</resources>

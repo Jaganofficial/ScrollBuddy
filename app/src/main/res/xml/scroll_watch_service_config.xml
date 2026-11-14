@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- As little access as the job allows:
+     - packageNames: events arrive from Instagram and YouTube only, never from any other app.
+       Keep the list in step with ShortVideoFeed; a unit test checks it.
+     - accessibilityEventTypes: something scrolling, which is how swipes are counted, and a
+       window taking the focus, which is how the app being opened again is noticed.
+     - canRetrieveWindowContent is false, so the service cannot read what is on screen. The
+       scroll events alone tell the Reels and Shorts pagers apart from everything else.
+     - flagIncludeNotImportantViews: YouTube marks the Shorts pager as unimportant for
+       accessibility, and without this flag its scroll events are withheld. -->
+<accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
+    android:accessibilityEventTypes="typeViewScrolled|typeWindowStateChanged"
+    android:accessibilityFeedbackType="feedbackGeneric"
+    android:accessibilityFlags="flagIncludeNotImportantViews"
+    android:canRetrieveWindowContent="false"
+    android:description="@string/a11y_service_description"
+    android:isAccessibilityTool="false"
+    android:notificationTimeout="100"
+    android:packageNames="com.instagram.android,com.google.android.youtube"
+    android:settingsActivity="com.scrollbuddy.MainActivity"
+    android:summary="@string/a11y_service_summary" />

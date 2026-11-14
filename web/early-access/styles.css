@@ -1,0 +1,1122 @@
+/* Vaathi ride-uhh! early-access page.
+   The colours are the app's: the brick red and navy of the character's checked shirt, on the
+   night-time navy the app draws across the screen when he walks in. */
+
+:root {
+  --ink: #0b1020;
+  --ink-2: #111730;
+  --ink-3: #1a2140;
+  --line: rgba(255, 255, 255, 0.09);
+  --text: #ecebf4;
+  --muted: #aeb1c9;
+  --red: #e2574a;
+  --red-deep: #b0382d;
+  --peach: #ffb4a8;
+  --lavender: #b7c4ff;
+  --navy: #2f3e6e;
+  --radius: 24px;
+  --page: min(1160px, 100% - 40px);
+  --font: "Roboto", system-ui, -apple-system, "Segoe UI", "Helvetica Neue", Arial, sans-serif;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 84px;
+}
+
+body {
+  margin: 0;
+  background: var(--ink);
+  color: var(--text);
+  font: 400 17px/1.6 var(--font);
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1,
+h2,
+h3,
+p,
+ul,
+ol,
+figure {
+  margin: 0;
+}
+
+ul,
+ol {
+  padding: 0;
+  list-style: none;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: var(--peach);
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid var(--lavender);
+  outline-offset: 3px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.sprite {
+  position: absolute;
+  width: 0;
+  height: 0;
+}
+
+svg {
+  width: 22px;
+  height: 22px;
+  flex: none;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.sprite .solid {
+  fill: currentColor;
+  stroke: none;
+}
+
+/* ---------- Buttons ---------- */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 26px;
+  height: 52px;
+  border: 0;
+  border-radius: 999px;
+  background: linear-gradient(135deg, var(--red), var(--red-deep));
+  color: #fff;
+  font: 700 1rem/1 var(--font);
+  text-decoration: none;
+  white-space: nowrap;
+  cursor: pointer;
+  box-shadow: 0 10px 30px -8px rgba(226, 87, 74, 0.7);
+  transition: transform 0.18s ease, box-shadow 0.18s ease, filter 0.18s ease;
+}
+
+.button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 36px -8px rgba(226, 87, 74, 0.85);
+  filter: brightness(1.08);
+}
+
+.button:active {
+  transform: translateY(0);
+}
+
+.button[disabled] {
+  opacity: 0.7;
+  cursor: progress;
+}
+
+.button-small {
+  height: 40px;
+  padding: 0 18px;
+  font-size: 0.92rem;
+}
+
+/* ---------- Top bar ---------- */
+
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 12px max(20px, (100% - 1160px) / 2);
+  background: rgba(11, 16, 32, 0.72);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--line);
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-right: auto;
+  color: var(--text);
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.brand img {
+  border-radius: 50%;
+  background: #dce1ff;
+}
+
+.nav nav {
+  display: flex;
+  gap: 22px;
+}
+
+.nav nav a {
+  color: var(--muted);
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: color 0.15s;
+}
+
+.nav nav a:hover {
+  color: var(--text);
+}
+
+/* ---------- Hero ---------- */
+
+.hero {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(60% 70% at 12% 0%, rgba(176, 56, 45, 0.42), transparent 70%),
+    radial-gradient(50% 60% at 95% 30%, rgba(47, 62, 110, 0.65), transparent 70%),
+    var(--ink);
+}
+
+.particles {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: relative;
+  width: var(--page);
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 88px) 0 clamp(24px, 4vw, 48px);
+  display: grid;
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 32px;
+  align-items: center;
+}
+
+.kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: var(--peach);
+  font-weight: 700;
+  font-size: 0.86rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.kicker .dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--red);
+  box-shadow: 0 0 0 0 rgba(226, 87, 74, 0.7);
+  animation: ping 1.8s ease-out infinite;
+}
+
+h1 {
+  margin-top: 14px;
+  font-size: clamp(2.7rem, 6.4vw, 4.9rem);
+  font-weight: 800;
+  line-height: 1.02;
+  letter-spacing: -0.025em;
+}
+
+.shine {
+  background: linear-gradient(100deg, var(--peach) 0%, var(--red) 35%, var(--lavender) 65%, var(--peach) 100%);
+  background-size: 220% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: shine 6s linear infinite;
+}
+
+.lead {
+  margin-top: 20px;
+  max-width: 34rem;
+  color: var(--muted);
+  font-size: clamp(1.05rem, 1.6vw, 1.22rem);
+}
+
+.lead em {
+  color: var(--text);
+  font-style: normal;
+  font-weight: 600;
+}
+
+/* ---------- Sign-up form ---------- */
+
+@property --turn {
+  syntax: "<angle>";
+  inherits: false;
+  initial-value: 0deg;
+}
+
+.signup {
+  margin-top: 30px;
+  max-width: 34rem;
+}
+
+/* The field wears a ring of colour that keeps turning, so the eye lands on it first */
+.signup-field {
+  position: relative;
+  display: flex;
+  gap: 8px;
+  padding: 7px;
+  border-radius: 999px;
+  background:
+    linear-gradient(var(--ink-2), var(--ink-2)) padding-box,
+    conic-gradient(from var(--turn), var(--red), var(--peach), var(--lavender), var(--navy), var(--red)) border-box;
+  border: 2px solid transparent;
+  box-shadow: 0 0 0 6px rgba(226, 87, 74, 0.1), 0 24px 60px -20px rgba(226, 87, 74, 0.55);
+  animation: turn 5s linear infinite;
+  transition: box-shadow 0.2s;
+}
+
+.signup-field:focus-within {
+  box-shadow: 0 0 0 8px rgba(183, 196, 255, 0.18), 0 24px 60px -16px rgba(226, 87, 74, 0.7);
+}
+
+.signup-field input {
+  flex: 1;
+  min-width: 0;
+  height: 52px;
+  padding: 0 20px;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: var(--text);
+  font: 500 1.08rem/1 var(--font);
+}
+
+.signup-field input::placeholder {
+  color: #7d819c;
+}
+
+.signup-field input:focus-visible {
+  outline: none;
+}
+
+.signup-status {
+  min-height: 1.5em;
+  margin-top: 12px;
+  padding-left: 22px;
+  font-weight: 600;
+}
+
+.signup-status.ok {
+  color: #9ee6b8;
+}
+
+.signup-status.warn {
+  color: var(--peach);
+}
+
+.signup-note {
+  padding-left: 22px;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.signup-large {
+  max-width: 36rem;
+}
+
+.signup-large .signup-field input {
+  height: 58px;
+  font-size: 1.15rem;
+}
+
+.signup-large .button {
+  height: 58px;
+}
+
+.trust {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 22px;
+  margin-top: 26px;
+  color: var(--text);
+  font-size: 0.95rem;
+  font-weight: 500;
+}
+
+.trust li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.trust svg {
+  width: 20px;
+  height: 20px;
+  padding: 3px;
+  border-radius: 50%;
+  background: rgba(158, 230, 184, 0.16);
+  color: #9ee6b8;
+  stroke-width: 3;
+}
+
+/* ---------- The character's stage ---------- */
+
+.stage {
+  position: relative;
+  display: grid;
+  place-items: end center;
+  min-height: clamp(420px, 62vh, 640px);
+}
+
+.halo {
+  position: absolute;
+  left: 50%;
+  bottom: 6%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  translate: -50% 0;
+  animation: breathe 6s ease-in-out infinite;
+}
+
+.halo-1 {
+  width: 96%;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  background: radial-gradient(circle, rgba(226, 87, 74, 0.2), transparent 68%);
+}
+
+.halo-2 {
+  width: 70%;
+  bottom: 14%;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  animation-delay: -2s;
+}
+
+.halo-3 {
+  width: 44%;
+  bottom: 22%;
+  border: 1px dashed rgba(255, 180, 168, 0.3);
+  animation: spin 40s linear infinite;
+}
+
+.vaathi {
+  position: relative;
+  height: clamp(400px, 60vh, 620px);
+  width: auto;
+  filter: drop-shadow(0 30px 40px rgba(0, 0, 0, 0.55));
+}
+
+.chip,
+.says {
+  position: absolute;
+  z-index: 2;
+  box-shadow: 0 18px 40px -12px rgba(0, 0, 0, 0.7);
+  animation: float 5s ease-in-out infinite;
+}
+
+/* The app's own count bubble, counting up and then turning red */
+.chip {
+  top: 9%;
+  left: 2%;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px 6px 6px;
+  border-radius: 999px;
+  background: #e9e8f1;
+  color: #1a1b26;
+  font-weight: 700;
+  font-size: 0.92rem;
+  transition: background 0.35s, color 0.35s;
+}
+
+.chip img {
+  border-radius: 50%;
+  background: #dce1ff;
+}
+
+.chip.is-warning {
+  background: var(--red);
+  color: #fff;
+}
+
+.says {
+  top: 13%;
+  right: -2%;
+  max-width: 15rem;
+  padding: 14px 18px;
+  border-radius: 20px 20px 20px 6px;
+  background: var(--ink-3);
+  border: 1px solid var(--line);
+  font-weight: 700;
+  line-height: 1.35;
+  animation-delay: -2.5s;
+}
+
+.says span {
+  display: block;
+  transition: opacity 0.35s, transform 0.35s;
+}
+
+.says.is-changing span {
+  opacity: 0;
+  transform: translateY(8px);
+}
+
+/* ---------- Ticker ---------- */
+
+.ticker {
+  overflow: hidden;
+  border-block: 1px solid var(--line);
+  background: var(--ink-2);
+}
+
+.ticker-track {
+  display: flex;
+  width: max-content;
+  animation: slide 36s linear infinite;
+}
+
+.ticker span {
+  padding: 16px 0;
+  color: var(--muted);
+  font-weight: 700;
+  font-size: 1.05rem;
+  white-space: nowrap;
+}
+
+.ticker span::after {
+  content: "✦";
+  margin: 0 26px;
+  color: var(--red);
+}
+
+/* ---------- Sections ---------- */
+
+.section {
+  position: relative;
+  padding: clamp(64px, 9vw, 112px) 0;
+}
+
+.section > * {
+  width: var(--page);
+  margin-inline: auto;
+}
+
+.section-tint {
+  background: linear-gradient(var(--ink-2), var(--ink));
+}
+
+.section-head {
+  max-width: 44rem;
+  margin: 0 auto clamp(32px, 5vw, 56px);
+  text-align: center;
+}
+
+.section-head h2,
+.cta h2 {
+  margin-top: 10px;
+  font-size: clamp(2rem, 4.4vw, 3.2rem);
+  font-weight: 800;
+  line-height: 1.08;
+  letter-spacing: -0.02em;
+}
+
+.section-head p:last-child {
+  margin-top: 14px;
+  color: var(--muted);
+  font-size: 1.1rem;
+}
+
+/* ---------- Feature cards ---------- */
+
+.cards {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.card {
+  position: relative;
+  overflow: hidden;
+  padding: 24px 22px 26px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: linear-gradient(160deg, var(--ink-3), var(--ink-2));
+  transition: transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease;
+}
+
+/* A patch of light that follows the pointer across the card */
+.card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(220px circle at var(--mx, 50%) var(--my, 0%), rgba(255, 180, 168, 0.2), transparent 70%);
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(255, 180, 168, 0.4);
+  box-shadow: 0 24px 50px -24px rgba(226, 87, 74, 0.6);
+}
+
+.card:hover::before {
+  opacity: 1;
+}
+
+.card > * {
+  position: relative;
+}
+
+.badge {
+  display: grid;
+  place-items: center;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: rgba(183, 196, 255, 0.14);
+  color: var(--lavender);
+  transition: background 0.25s, color 0.25s, transform 0.25s;
+}
+
+.card:hover .badge {
+  background: var(--red);
+  color: #fff;
+  transform: rotate(-8deg) scale(1.08);
+}
+
+.card h3 {
+  margin-top: 16px;
+  font-size: 1.14rem;
+  font-weight: 800;
+  line-height: 1.25;
+}
+
+.card p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+.card-accent {
+  border-color: rgba(226, 87, 74, 0.55);
+  background: linear-gradient(160deg, rgba(176, 56, 45, 0.5), var(--ink-2));
+}
+
+.card-accent .badge {
+  background: rgba(255, 180, 168, 0.18);
+  color: var(--peach);
+}
+
+/* ---------- Phones ---------- */
+
+.phone {
+  position: relative;
+  width: min(250px, 68vw);
+  aspect-ratio: 540 / 1188;
+  flex: none;
+  overflow: hidden;
+  border: 8px solid #04060e;
+  border-radius: 36px;
+  background: #000;
+  box-shadow:
+    0 0 0 1px rgba(255, 255, 255, 0.12),
+    0 40px 70px -30px rgba(0, 0, 0, 0.9),
+    0 0 80px -30px rgba(226, 87, 74, 0.5);
+}
+
+.phone img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Two or three captures taking turns, like a short clip */
+.phone-cycle img {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  animation: cycle-2 7s infinite;
+}
+
+.phone-cycle img:nth-child(2) {
+  animation-delay: 3.5s;
+}
+
+.phone-cycle-3 img {
+  animation-name: cycle-3;
+  animation-duration: 9s;
+}
+
+.phone-cycle-3 img:nth-child(2) {
+  animation-delay: 3s;
+}
+
+.phone-cycle-3 img:nth-child(3) {
+  animation-delay: 6s;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 28px;
+}
+
+.step {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 26px;
+  text-align: center;
+}
+
+.step-number {
+  display: inline-grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background: var(--red);
+  color: #fff;
+  font-weight: 800;
+}
+
+.step h3 {
+  margin-top: 12px;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.step p {
+  margin-top: 8px;
+  max-width: 20rem;
+  color: var(--muted);
+}
+
+/* ---------- Privacy ---------- */
+
+.privacy {
+  overflow: hidden;
+  background:
+    radial-gradient(70% 90% at 50% 0%, rgba(176, 56, 45, 0.5), transparent 70%),
+    var(--ink);
+  border-block: 1px solid var(--line);
+}
+
+.privacy .particles {
+  width: 100%;
+  margin: 0;
+}
+
+.privacy-inner {
+  position: relative;
+}
+
+.pillars {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 16px;
+}
+
+.pillar {
+  padding: 26px 22px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: var(--radius);
+  background: rgba(11, 16, 32, 0.55);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.pillar svg {
+  width: 34px;
+  height: 34px;
+  color: var(--peach);
+}
+
+.pillar h3 {
+  margin-top: 14px;
+  font-size: 1.14rem;
+  font-weight: 800;
+}
+
+.pillar p {
+  margin-top: 8px;
+  color: var(--muted);
+  font-size: 0.97rem;
+}
+
+.privacy-foot {
+  margin-top: 34px;
+  color: var(--muted);
+  text-align: center;
+}
+
+/* ---------- Gallery ---------- */
+
+.gallery {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  gap: clamp(16px, 4vw, 48px);
+}
+
+.gallery figure {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.gallery figure:nth-child(2) .phone {
+  width: min(290px, 72vw);
+}
+
+.gallery figcaption {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+/* ---------- Closing call ---------- */
+
+.cta {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(56px, 8vw, 96px) 0 0;
+  background:
+    radial-gradient(60% 80% at 80% 100%, rgba(176, 56, 45, 0.55), transparent 70%),
+    radial-gradient(50% 70% at 0% 60%, rgba(47, 62, 110, 0.7), transparent 70%),
+    var(--ink-2);
+  border-top: 1px solid var(--line);
+}
+
+.cta-inner {
+  position: relative;
+  width: var(--page);
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: clamp(24px, 5vw, 72px);
+  align-items: end;
+}
+
+.cta-vaathi {
+  height: clamp(320px, 46vh, 480px);
+  width: auto;
+  filter: drop-shadow(0 20px 40px rgba(0, 0, 0, 0.6));
+}
+
+.cta-copy {
+  padding-bottom: clamp(40px, 7vw, 88px);
+}
+
+.cta-copy > p {
+  margin-top: 14px;
+  max-width: 34rem;
+  color: var(--muted);
+  font-size: 1.12rem;
+}
+
+/* ---------- Footer ---------- */
+
+.footer {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 12px 24px;
+  padding: 26px max(20px, (100% - 1160px) / 2);
+  border-top: 1px solid var(--line);
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.footer strong {
+  color: var(--text);
+}
+
+/* ---------- Plain text page ---------- */
+
+.prose {
+  width: min(44rem, 100% - 40px);
+  margin: 0 auto;
+  padding: clamp(40px, 7vw, 80px) 0;
+}
+
+.prose h1 {
+  font-size: clamp(2rem, 5vw, 2.8rem);
+}
+
+.prose h2 {
+  margin-top: 36px;
+  font-size: 1.3rem;
+  font-weight: 800;
+}
+
+.prose p,
+.prose ul {
+  margin-top: 12px;
+  color: var(--muted);
+}
+
+.prose ul {
+  padding-left: 1.2em;
+  list-style: disc;
+}
+
+.prose li + li {
+  margin-top: 6px;
+}
+
+/* ---------- Confetti ---------- */
+
+.confetti {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* ---------- Appearing on scroll ---------- */
+
+.js .reveal {
+  opacity: 0;
+  transform: translateY(28px);
+  transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  transition-delay: var(--delay, 0ms);
+}
+
+.js .reveal.in {
+  opacity: 1;
+  transform: none;
+}
+
+/* ---------- Motion ---------- */
+
+@keyframes turn {
+  to {
+    --turn: 360deg;
+  }
+}
+
+@keyframes shine {
+  to {
+    background-position: -220% 0;
+  }
+}
+
+@keyframes ping {
+  to {
+    box-shadow: 0 0 0 12px rgba(226, 87, 74, 0);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    scale: 1.05;
+  }
+}
+
+@keyframes spin {
+  to {
+    rotate: 360deg;
+  }
+}
+
+@keyframes float {
+  50% {
+    translate: 0 -10px;
+  }
+}
+
+@keyframes slide {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+@keyframes cycle-2 {
+  0%,
+  45% {
+    opacity: 1;
+  }
+  55%,
+  100% {
+    opacity: 0;
+  }
+}
+
+@keyframes cycle-3 {
+  0%,
+  30% {
+    opacity: 1;
+  }
+  37%,
+  100% {
+    opacity: 0;
+  }
+}
+
+/* ---------- Narrower screens ---------- */
+
+@media (max-width: 1020px) {
+  .cards,
+  .pillars {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 860px) {
+  .nav nav {
+    display: none;
+  }
+
+  .hero-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stage {
+    min-height: 400px;
+  }
+
+  .vaathi {
+    height: 400px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  /* The phones go side by side in a row that can be swiped */
+  .gallery {
+    justify-content: flex-start;
+    overflow-x: auto;
+    padding: 0 20px 24px;
+    width: 100%;
+    scroll-snap-type: x mandatory;
+  }
+
+  .gallery figure {
+    scroll-snap-align: center;
+  }
+
+  .cta-inner {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-vaathi {
+    order: 2;
+    height: 300px;
+    margin: 0 auto;
+  }
+
+  .cta-copy {
+    padding-bottom: 8px;
+  }
+}
+
+@media (max-width: 560px) {
+  body {
+    font-size: 16px;
+  }
+
+  .cards,
+  .pillars {
+    grid-template-columns: 1fr;
+  }
+
+  /* The button drops under the field, each the full width */
+  .signup-field {
+    flex-direction: column;
+    border-radius: 30px;
+  }
+
+  .signup-field input {
+    text-align: center;
+  }
+
+  .signup-status,
+  .signup-note {
+    padding-left: 0;
+    text-align: center;
+  }
+
+  /* The bubble and the count sit above his head, where there is room for them */
+  .stage {
+    min-height: 510px;
+  }
+
+  .vaathi {
+    height: 370px;
+  }
+
+  .chip {
+    top: 0;
+    left: 0;
+  }
+
+  .says {
+    top: 52px;
+    right: 0;
+    max-width: 12rem;
+    font-size: 0.9rem;
+  }
+
+  .nav .button-small {
+    display: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .particles,
+  .confetti {
+    display: none;
+  }
+
+  .js .reveal {
+    opacity: 1;
+    transform: none;
+  }
+
+  .phone-cycle img:first-child {
+    opacity: 1;
+  }
+}

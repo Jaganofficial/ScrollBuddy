@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Vaathi ride-uhh!</string>
+
+    <!-- What the character calls the person. The first two are also used as they are in his
+         lines; the third names the choice of a word of the person's own. -->
+    <string name="address_nanba">Nanba</string>
+    <string name="address_nanbi">Nanbi</string>
+    <string name="address_custom">My own</string>
+    <string name="address_custom_hint">What should Vaathi call you?</string>
+
+    <string name="tab_home">Home</string>
+    <string name="tab_history">History</string>
+
+    <string name="a11y_service_label">Vaathi ride-uhh!</string>
+    <string name="a11y_service_summary">Counts your swipes through Reels and Shorts</string>
+    <string name="a11y_service_description">Notices when you open Instagram or YouTube, and when you swipe from one video to the next in Reels and Shorts. It shows a small count of today\'s swipes while you swipe, and a character over the screen when you reach the limit you set. It receives events from those two apps only: a window of theirs coming to the front, and something scrolling. It can\'t read your screen, and nothing leaves your phone.</string>
+
+    <string name="app_instagram">Instagram Reels</string>
+    <string name="app_youtube">YouTube Shorts</string>
+
+    <!-- First run -->
+    <string name="onboarding_kicker">Reels · Shorts</string>
+    <string name="onboarding_welcome_title">Scroll podhum, Nanba.</string>
+    <string name="onboarding_welcome_body">Swipe through too many Reels or Shorts and Vaathi walks in, covers the screen and tells you to stop.</string>
+    <string name="onboarding_skip">Skip</string>
+    <string name="onboarding_start">Get started</string>
+    <string name="onboarding_continue">Continue</string>
+    <string name="onboarding_finish">Let\'s go</string>
+    <string name="onboarding_back">Back</string>
+    <string name="onboarding_features_title">Vaathi enna pannuvaar?</string>
+    <string name="onboarding_features_body">What Vaathi does once he is on duty.</string>
+    <string name="feature_only_title">Reels and Shorts only</string>
+    <string name="feature_only_body">Feeds, chats and every other app are none of his business.</string>
+    <string name="feature_limit_title">Your limit</string>
+    <string name="feature_limit_body">A number of reels or a length of time. You pick.</string>
+    <string name="feature_zero_title">Zero mode</string>
+    <string name="feature_zero_body">For days when even one reel is one too many.</string>
+    <string name="feature_count_title">Live count</string>
+    <string name="feature_count_body">A small bubble shows today\'s count as you swipe.</string>
+    <string name="feature_history_title">History</string>
+    <string name="feature_history_body">Totals by day, by month or for any dates you choose.</string>
+    <string name="feature_private_title">Stays on your phone</string>
+    <string name="feature_private_body">No internet access, so nothing is collected or shared.</string>
+    <string name="onboarding_setup_bubble">Unga rules, unga ishtam.</string>
+    <string name="onboarding_setup_title">Rules-a sollunga</string>
+    <string name="onboarding_setup_body">You can change these any time on the Home tab.</string>
+
+    <!-- %1$s is how the person asked to be addressed -->
+    <string name="home_greeting">Vanakkam, %1$s!</string>
+    <string name="status_on_chip">On duty</string>
+    <string name="status_off_chip">Off duty</string>
+    <string name="status_on_body">Vaathi is watching Reels and Shorts only. The rest of Instagram and YouTube, and every other app, is none of his business.</string>
+    <string name="status_off_body">Switch Vaathi on and the reels get a limit. One switch in Accessibility settings is all it takes; the app asks for no other permission.</string>
+    <string name="status_off_action">Put Vaathi on duty</string>
+    <string name="status_preview">See Vaathi walk in</string>
+
+    <string name="consent_title">Before you switch it on</string>
+    <string name="consent_body">This app uses Android\'s Accessibility API for one thing: to notice when you open Instagram or YouTube and when you swipe from one video to the next in Reels and Shorts, and to show a small count and Vaathi on top of them.\n\n• It receives two kinds of event, from those two apps only: a window of theirs coming to the front, and something scrolling.\n• It can\'t read what\'s on your screen or what you type, in those apps or any other.\n• It counts your swipes and the time between them, and keeps the counts on this phone.\n• The app has no internet access, so nothing is collected or shared.\n\nOn the next screen, find Vaathi ride-uhh! under installed or downloaded apps and switch it on.</string>
+    <string name="consent_agree">I agree</string>
+    <string name="consent_decline">Not now</string>
+
+    <string name="today_title">Innaiku</string>
+    <string name="today_reels">Reels</string>
+    <string name="today_shorts">Shorts</string>
+    <string name="today_time">Time</string>
+    <string name="today_empty">Innaiku oru reel kooda illa. Super, %1$s!</string>
+
+    <string name="settings_title">Vaathi rules</string>
+    <string name="limit_title">Vaathi eppo varanum?</string>
+    <string name="limit_swipes_title">After some reels</string>
+    <string name="limit_swipes_body">He walks in once you have swiped this many.</string>
+    <string name="limit_time_title">After some time</string>
+    <string name="limit_time_body">He walks in once you have been swiping this long.</string>
+    <string name="limit_zero_title">Zero reels</string>
+    <string name="limit_zero_body">He walks in at the very first swipe, and gives no extra reels.</string>
+    <string name="settings_watch_apps">Keep an eye on</string>
+    <string name="settings_address">Vaathi calls me</string>
+
+    <plurals name="swipes">
+        <item quantity="one">%d swipe</item>
+        <item quantity="other">%d swipes</item>
+    </plurals>
+    <plurals name="minutes">
+        <item quantity="one">%d minute</item>
+        <item quantity="other">%d minutes</item>
+    </plurals>
+    <!-- The same two without their number, beside a number that can be typed -->
+    <plurals name="unit_swipes">
+        <item quantity="one">swipe</item>
+        <item quantity="other">swipes</item>
+    </plurals>
+    <plurals name="unit_minutes">
+        <item quantity="one">minute</item>
+        <item quantity="other">minutes</item>
+    </plurals>
+    <string name="limit_less">Less</string>
+    <string name="limit_more">More</string>
+    <!-- %1$d and %2$d are the smallest and largest number that can be typed -->
+    <string name="limit_typed_range">Slide, or type any number from %1$d to %2$d.</string>
+    <string name="duration_under_a_minute">under 1 min</string>
+    <string name="duration_under_a_minute_compact">&lt;1 min</string>
+    <string name="duration_minutes">%d min</string>
+    <string name="duration_hours_minutes">%1$d h %2$d min</string>
+    <!-- %1$s is a swipe count such as "42 swipes", %2$s a duration such as "12 min" -->
+    <string name="usage_summary">%1$s · %2$s</string>
+
+    <string name="nudge_title">Vaathi ride-uhh!</string>
+    <!-- The character's lines, in Tamil as it is typed in chat. Each takes the address term
+         as %1$s. -->
+    <string-array name="nudge_lines">
+        <item>Podhum, %1$s. Phone-a keezha vai.</item>
+        <item>I am waiting, %1$s… andha phone keezha pora varaikkum.</item>
+        <item>Oru thadava mudivu pannitten, %1$s: reels podhum.</item>
+        <item>Power phone-la illa, %1$s. Adha keezha vekkura kai-la irukku.</item>
+        <item>Yaarum paakala-nu nenachiya, %1$s? Vaathi inga dhaan irukken.</item>
+        <item>Life is very short, %1$s. Adha reels-la tholaikkaadha.</item>
+        <item>Class mudinjiduchu, %1$s. Phone-a ulla vai.</item>
+        <item>Vaathi coming-nu sonnen la, %1$s? Vandhutten.</item>
+    </string-array>
+    <!-- His lines when no reels at all are allowed -->
+    <string-array name="nudge_lines_zero">
+        <item>Innaiku zero reels-nu neeye sonna, %1$s. Sonna sol thavara koodadhu.</item>
+        <item>Oru reel kooda venaam, %1$s. Adhu dhaan namma deal.</item>
+        <item>Innaiku leave, %1$s. Reels-ku, shorts-ku, rendukkume.</item>
+    </string-array>
+    <!-- How many videos went by since the app was opened -->
+    <plurals name="nudge_stats">
+        <item quantity="one">Scrolled %d video so far!</item>
+        <item quantity="other">Scrolled %d videos so far!</item>
+    </plurals>
+    <string name="nudge_take_break">Close the app</string>
+    <!-- Asking for a little more; %d is how much more -->
+    <string name="nudge_more_reels">Inu %d reels sir</string>
+    <string name="nudge_more_shorts">Inu %d shorts sir</string>
+    <string name="nudge_more_minutes">Inu %d nimisham sir</string>
+
+    <!-- The small bubble shown over Reels and Shorts while swiping -->
+    <plurals name="counter_reels">
+        <item quantity="one">%d reel today</item>
+        <item quantity="other">%d reels today</item>
+    </plurals>
+    <plurals name="counter_shorts">
+        <item quantity="one">%d Short today</item>
+        <item quantity="other">%d Shorts today</item>
+    </plurals>
+    <string name="counter_warning_swipes">Vaathi coming… %d left</string>
+    <string name="counter_warning_time">Vaathi coming… any minute now</string>
+
+    <string name="history_range_today">Today</string>
+    <string name="history_range_week">7 days</string>
+    <string name="history_range_month">30 days</string>
+    <string name="history_range_year">12 months</string>
+    <string name="history_range_all">All time</string>
+    <string name="history_range_custom">Choose dates</string>
+    <!-- A chosen range, such as "3 Nov – 9 Nov" -->
+    <string name="history_range_custom_value">%1$s – %2$s</string>
+    <string name="history_pick_confirm">Show</string>
+    <string name="history_pick_cancel">Cancel</string>
+    <string name="history_total_swipes">Swipes</string>
+    <string name="history_total_time">Time watching</string>
+    <string name="history_by_app">By app</string>
+    <string name="history_by_day">Day by day</string>
+    <string name="history_by_month">Month by month</string>
+    <string name="history_bucket_today">Today</string>
+    <string name="history_empty">Innum onnum illa, %1$s. Swipes through Reels and Shorts show up here once Vaathi is on duty.</string>
+    <string name="history_empty_range">Not a single reel in these dates. Super, %1$s!</string>
+    <string name="history_clear">Clear history</string>
+    <string name="history_clear_title">Clear all history?</string>
+    <string name="history_clear_body">Every count and time kept on this phone will be deleted. This can\'t be undone.</string>
+    <string name="history_clear_confirm">Clear</string>
+    <string name="history_clear_cancel">Keep</string>
+</resources>

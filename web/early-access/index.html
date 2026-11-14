@@ -1,0 +1,285 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Vaathi ride-uhh! · Early access</title>
+  <meta name="description" content="An Android app that counts your swipes through Reels and Shorts and sends Vaathi onto your screen when you've had enough. Everything stays on your phone.">
+  <meta name="theme-color" content="#0E1322">
+  <link rel="icon" href="assets/vaathi-head.webp">
+  <link rel="preload" as="image" href="assets/vaathi-wave.webp">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- The icons, drawn once and used by name -->
+<svg class="sprite" aria-hidden="true">
+  <symbol id="i-reels" viewBox="0 0 24 24"><path d="M6 3h12a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H6a3 3 0 0 1-3-3V6a3 3 0 0 1 3-3z"/><path class="solid" d="M10 8.4l5.6 3.6-5.6 3.6z"/></symbol>
+  <symbol id="i-clock" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3.5 2"/></symbol>
+  <symbol id="i-zero" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M5.7 5.7l12.6 12.6"/></symbol>
+  <symbol id="i-plus" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M8 12h8M12 8v8"/></symbol>
+  <symbol id="i-bubble" viewBox="0 0 24 24"><path d="M5 4h14a2 2 0 0 1 2 2v9a2 2 0 0 1-2 2h-7l-4.500 3.500V17H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></symbol>
+  <symbol id="i-chart" viewBox="0 0 24 24"><path d="M5 20v-6M12 20V5M19 20V10"/></symbol>
+  <symbol id="i-user" viewBox="0 0 24 24"><circle cx="12" cy="8" r="4"/><path d="M4 20a8 8 0 0 1 16 0"/></symbol>
+  <symbol id="i-lock" viewBox="0 0 24 24"><path d="M6.500 11h11a1.500 1.500 0 0 1 1.500 1.500v7a1.500 1.500 0 0 1-1.500 1.500h-11A1.500 1.500 0 0 1 5 19.500v-7A1.500 1.500 0 0 1 6.500 11z"/><path d="M8 11V8a4 4 0 0 1 8 0v3"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M5 12.500l4.500 4.500L19 7"/></symbol>
+  <symbol id="i-cloud-off" viewBox="0 0 24 24"><path d="M7 18a4 4 0 0 1-.5-7.970 5.500 5.500 0 0 1 10.600-1.400A4.700 4.700 0 0 1 17.500 18z"/><path d="M4 4l16 16"/></symbol>
+  <symbol id="i-eye-off" viewBox="0 0 24 24"><path d="M2 12s3.600-6.500 10-6.500S22 12 22 12s-3.600 6.500-10 6.500S2 12 2 12z"/><circle cx="12" cy="12" r="2.500"/><path d="M4 4l16 16"/></symbol>
+  <symbol id="i-shield" viewBox="0 0 24 24"><path d="M12 3l7 3v5c0 4.500-3 8-7 10-4-2-7-5.500-7-10V6z"/><path d="M9 12l2.200 2.200L15 10"/></symbol>
+</svg>
+
+<header class="nav">
+  <a class="brand" href="#top">
+    <img src="assets/vaathi-head.webp" alt="" width="36" height="36">
+    <span>Vaathi ride-uhh!</span>
+  </a>
+  <nav aria-label="Sections">
+    <a href="#features">Features</a>
+    <a href="#how">How it works</a>
+    <a href="#privacy">Privacy</a>
+  </nav>
+  <a class="button button-small" href="#join">Get early access</a>
+</header>
+
+<main id="top">
+
+  <section class="hero">
+    <canvas class="particles" aria-hidden="true"></canvas>
+    <div class="hero-grid">
+      <div class="hero-copy">
+        <p class="kicker"><span class="dot"></span> Reels · Shorts · Android</p>
+        <h1>Scroll podhum, <span class="shine">Nanba.</span></h1>
+        <p class="lead">
+          You said <em>"just five more"</em> forty reels ago. Vaathi keeps count, walks onto your
+          screen and tells you to stop, in Tamil, the way a friend would.
+        </p>
+
+        <form class="signup" novalidate>
+          <label class="sr-only" for="email-hero">Email address</label>
+          <div class="signup-field">
+            <input id="email-hero" name="email" type="email" inputmode="email" autocomplete="email"
+                   placeholder="you@gmail.com" required>
+            <button class="button" type="submit">Get early access</button>
+          </div>
+          <p class="signup-status" role="status" aria-live="polite"></p>
+          <p class="signup-note">One email when your invite is ready. Nothing else, ever.</p>
+        </form>
+
+        <ul class="trust">
+          <li><svg><use href="#i-check"/></svg> Everything stays on your phone</li>
+          <li><svg><use href="#i-check"/></svg> Watches only Reels and Shorts</li>
+          <li><svg><use href="#i-check"/></svg> No account, no ads</li>
+        </ul>
+      </div>
+
+      <div class="stage" aria-hidden="true">
+        <div class="halo halo-1"></div>
+        <div class="halo halo-2"></div>
+        <div class="halo halo-3"></div>
+        <div class="chip" data-chip>
+          <img src="assets/vaathi-head.webp" alt="" width="28" height="28">
+          <span data-chip-text>1 reel today</span>
+        </div>
+        <div class="says" data-says>
+          <span data-says-text>Podhum, Nanba. Phone-a keezha vai.</span>
+        </div>
+        <img class="vaathi" src="assets/vaathi-wave.webp" alt="" width="448" height="720">
+      </div>
+    </div>
+  </section>
+
+  <div class="ticker" aria-hidden="true">
+    <div class="ticker-track">
+      <span>Podhum, Nanba.</span><span>Phone-a keezha vai.</span><span>Class mudinjiduchu.</span>
+      <span>Vaathi coming…</span><span>Inu 5 reels sir?</span><span>Life is very short, Nanba.</span>
+      <span>Scroll podhum.</span><span>I am waiting…</span>
+      <span>Podhum, Nanba.</span><span>Phone-a keezha vai.</span><span>Class mudinjiduchu.</span>
+      <span>Vaathi coming…</span><span>Inu 5 reels sir?</span><span>Life is very short, Nanba.</span>
+      <span>Scroll podhum.</span><span>I am waiting…</span>
+    </div>
+  </div>
+
+  <section class="section" id="features">
+    <div class="section-head reveal">
+      <p class="kicker">Everything, up front</p>
+      <h2>Vaathi enna pannuvaar?</h2>
+      <p>What he does, what he doesn't, and why you'll thank him at 1 a.m.</p>
+    </div>
+
+    <div class="cards">
+      <article class="card reveal">
+        <div class="badge"><svg><use href="#i-reels"/></svg></div>
+        <h3>Only Reels. Only Shorts.</h3>
+        <p>Your feed, your DMs and your search are not his department. He counts one thing: swipes from one short video to the next.</p>
+      </article>
+      <article class="card reveal">
+        <div class="badge"><svg><use href="#i-clock"/></svg></div>
+        <h3>Your limit, your rule</h3>
+        <p>Twenty reels or ten minutes, you decide. Slide it, step it, or type the exact number.</p>
+      </article>
+      <article class="card reveal">
+        <div class="badge"><svg><use href="#i-zero"/></svg></div>
+        <h3>Zero mode</h3>
+        <p>Exam tomorrow? Pick zero. The very first swipe brings him in, and there is no bargaining.</p>
+      </article>
+      <article class="card reveal">
+        <div class="badge"><svg><use href="#i-plus"/></svg></div>
+        <h3>"Inu 5 reels sir"</h3>
+        <p>Not ready to stop? Ask for five more. He'll allow it, and be back the moment they're gone.</p>
+      </article>
+      <article class="card reveal">
+        <div class="badge"><svg><use href="#i-bubble"/></svg></div>
+        <h3>A count that follows you</h3>
+        <p>A small bubble shows today's count while you swipe. When it turns red, Vaathi is on his way.</p>
+      </article>
+      <article class="card reveal">
+        <div class="badge"><svg><use href="#i-chart"/></svg></div>
+        <h3>Your history, your dates</h3>
+        <p>Today, this week, this year, or any dates you pick from a calendar. See where the hours went.</p>
+      </article>
+      <article class="card reveal">
+        <div class="badge"><svg><use href="#i-user"/></svg></div>
+        <h3>He calls you Nanba</h3>
+        <p>Or Nanbi, or whatever your friends call you. His lines are in Tamil, typed the way you'd type it in a chat.</p>
+      </article>
+      <article class="card card-accent reveal">
+        <div class="badge"><svg><use href="#i-lock"/></svg></div>
+        <h3>Stays on your phone</h3>
+        <p>The app has no internet permission. It couldn't send your data anywhere even if it wanted to.</p>
+      </article>
+    </div>
+  </section>
+
+  <section class="section section-tint" id="how">
+    <div class="section-head reveal">
+      <p class="kicker">How it works</p>
+      <h2>Three steps. Then he takes over.</h2>
+    </div>
+
+    <ol class="steps">
+      <li class="step reveal">
+        <div class="phone"><img src="assets/shot-rules.jpg" alt="The rules screen: a limit of five swipes, set with a number field and a seek bar." loading="lazy" width="540" height="1188"></div>
+        <div class="step-text">
+          <span class="step-number">1</span>
+          <h3>Set your rule</h3>
+          <p>A number of reels, a length of time, or none at all. One switch in Accessibility settings puts Vaathi on duty.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <div class="phone phone-cycle">
+          <img src="assets/shot-count.jpg" alt="A bubble at the top of Reels reading 233 reels today." loading="lazy" width="540" height="1188">
+          <img src="assets/shot-warning.jpg" alt="The bubble turned red, reading Vaathi coming, 2 left." loading="lazy" width="540" height="1188">
+        </div>
+        <div class="step-text">
+          <span class="step-number">2</span>
+          <h3>Scroll like you always do</h3>
+          <p>He keeps count quietly at the top of the screen, and warns you when the limit is three swipes away.</p>
+        </div>
+      </li>
+      <li class="step reveal">
+        <div class="phone phone-cycle phone-cycle-3">
+          <img src="assets/shot-enter.jpg" alt="Vaathi walking in and waving over a dimmed screen." loading="lazy" width="540" height="1188">
+          <img src="assets/shot-nudge.jpg" alt="Vaathi holding up a stop sign under a bubble that says Podhum, Nanba. Phone-a keezha vai." loading="lazy" width="540" height="1188">
+          <img src="assets/shot-sweep.jpg" alt="Vaathi sweeping his hand out to the side as the app closes." loading="lazy" width="540" height="1188">
+        </div>
+        <div class="step-text">
+          <span class="step-number">3</span>
+          <h3>Vaathi walks in</h3>
+          <p>He covers the reel, holds up a hand and says his piece. Close the app, or ask for five more.</p>
+        </div>
+      </li>
+    </ol>
+  </section>
+
+  <section class="section privacy" id="privacy">
+    <canvas class="particles" aria-hidden="true"></canvas>
+    <div class="privacy-inner">
+      <div class="section-head reveal">
+        <p class="kicker">Privacy</p>
+        <h2>Unga data, unga phone-la.</h2>
+        <p>Your data, on your phone. That's the whole policy. No worries.</p>
+      </div>
+
+      <div class="pillars">
+        <div class="pillar reveal">
+          <svg><use href="#i-cloud-off"/></svg>
+          <h3>It can't go online</h3>
+          <p>The app doesn't ask Android for internet access. With no way out, nothing it counts can leave your phone.</p>
+        </div>
+        <div class="pillar reveal">
+          <svg><use href="#i-reels"/></svg>
+          <h3>Two apps, nothing else</h3>
+          <p>Android itself only tells Vaathi about Instagram and YouTube. Your other apps are invisible to him.</p>
+        </div>
+        <div class="pillar reveal">
+          <svg><use href="#i-eye-off"/></svg>
+          <h3>He can't read your screen</h3>
+          <p>He hears that something scrolled, not what it was. No messages, no usernames, no passwords.</p>
+        </div>
+        <div class="pillar reveal">
+          <svg><use href="#i-shield"/></svg>
+          <h3>No account, no ads, no trackers</h3>
+          <p>Nothing to sign up for inside the app, and nothing watching you use it. Delete your history with one tap.</p>
+        </div>
+      </div>
+
+      <p class="privacy-foot reveal">
+        The only thing we ever ask for is the email on this page, and only to send your invite.
+        <a href="privacy.html">Read the short privacy note</a>.
+      </p>
+    </div>
+  </section>
+
+  <section class="section" id="inside">
+    <div class="section-head reveal">
+      <p class="kicker">A look inside</p>
+      <h2>Small app. Big attitude.</h2>
+    </div>
+    <div class="gallery">
+      <figure class="reveal">
+        <div class="phone"><img src="assets/shot-home.jpg" alt="The Home tab, greeting you with Vanakkam and today's counts." loading="lazy" width="540" height="1188"></div>
+        <figcaption>Today at a glance</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="phone"><img src="assets/shot-nudge.jpg" alt="The nudge with its two buttons, Close the app and Inu 5 reels sir." loading="lazy" width="540" height="1188"></div>
+        <figcaption>The moment of truth</figcaption>
+      </figure>
+      <figure class="reveal">
+        <div class="phone"><img src="assets/shot-history.jpg" alt="The History tab with totals by app and a bar for each day." loading="lazy" width="540" height="1188"></div>
+        <figcaption>Where the time went</figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <section class="cta" id="join">
+    <canvas class="particles" aria-hidden="true"></canvas>
+    <div class="cta-inner">
+      <img class="cta-vaathi" src="assets/vaathi-stop.webp" alt="" loading="lazy" width="496" height="720">
+      <div class="cta-copy reveal">
+        <h2>Be first to meet Vaathi.</h2>
+        <p>Early access opens to a small group on Android. Leave your email and he'll come find you.</p>
+        <form class="signup signup-large" novalidate>
+          <label class="sr-only" for="email-cta">Email address</label>
+          <div class="signup-field">
+            <input id="email-cta" name="email" type="email" inputmode="email" autocomplete="email"
+                   placeholder="you@gmail.com" required>
+            <button class="button" type="submit">Get early access</button>
+          </div>
+          <p class="signup-status" role="status" aria-live="polite"></p>
+          <p class="signup-note">Use the email of your Google account: Android invites go out by Google account.</p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="footer">
+  <p><strong>Vaathi ride-uhh!</strong> An independent app, not affiliated with Instagram, YouTube, Meta or Google.</p>
+  <p><a href="privacy.html">Privacy</a></p>
+</footer>
+
+<canvas class="confetti" aria-hidden="true"></canvas>
+<script src="script.js"></script>
+</body>
+</html>
